@@ -13,7 +13,7 @@ public class PlayerControl : MonoBehaviour
 
         if (Input.GetKey("w"))
         {
-            rb.MovePosition(new Vector3(transform.position.x - 5, transform.position.y, transform.position.z));
+            rb.AddForce(-20000 * Time.deltaTime, 0, 0);
             if (!isJumping)
             {
                 GetComponent<Animator>().Play("SonicRunning");
@@ -21,7 +21,7 @@ public class PlayerControl : MonoBehaviour
         }
         if (Input.GetKey("s"))
         {
-            rb.MovePosition(new Vector3(transform.position.x + 5, transform.position.y, transform.position.z));
+            rb.AddForce(20000 * Time.deltaTime, 0, 0);
             if (!isJumping)
             {
                 GetComponent<Animator>().Play("SonicRunning");
@@ -29,7 +29,7 @@ public class PlayerControl : MonoBehaviour
         }
         if (Input.GetKey("a"))
         {
-            rb.MovePosition(new Vector3(transform.position.x, transform.position.y, transform.position.z - 5));
+            rb.AddForce(0, 0, -20000 * Time.deltaTime);
             if (!isJumping)
             {
                 GetComponent<Animator>().Play("SonicRunning");
@@ -37,7 +37,7 @@ public class PlayerControl : MonoBehaviour
         }
         if (Input.GetKey("d"))
         {
-            rb.MovePosition(new Vector3(transform.position.x, transform.position.y, transform.position.z + 5));
+            rb.AddForce(0, 0, 20000 * Time.deltaTime);
             if (!isJumping)
             {
                 GetComponent<Animator>().Play("SonicRunning");
@@ -45,13 +45,14 @@ public class PlayerControl : MonoBehaviour
         }
         if (Input.GetKey("space") && !isJumping)
         {
-            rb.MovePosition(new Vector3(transform.position.x, transform.position.y + 5, transform.position.z));
+            rb.AddForce(0, 250000 * Time.deltaTime, 0);
             isJumping = true;
         }
 
         if (Input.anyKey == false && isJumping == false)
         {
             GetComponent<Animator>().Play("SonicIdle");
+            rb.velocity = new Vector3(0, 0, 0);
         }
         else if (isJumping)
         {
