@@ -7,13 +7,17 @@ public class PlayerControl : MonoBehaviour
     public Rigidbody rb;
     public bool isJumping = false;
 
+    public Component camera;
+
+    public Vector3 offset;
+
     // Update is called once per frame
     void FixedUpdate()
     {
 
         if (Input.GetKey("w"))
         {
-            rb.AddForce(-20000 * Time.deltaTime, 0, 0);
+            rb.AddForce(-30000 * Time.deltaTime, 0, 0);
             if (!isJumping)
             {
                 GetComponent<Animator>().Play("SonicRunning");
@@ -21,7 +25,7 @@ public class PlayerControl : MonoBehaviour
         }
         if (Input.GetKey("s"))
         {
-            rb.AddForce(20000 * Time.deltaTime, 0, 0);
+            rb.AddForce(30000 * Time.deltaTime, 0, 0);
             if (!isJumping)
             {
                 GetComponent<Animator>().Play("SonicRunning");
@@ -29,7 +33,7 @@ public class PlayerControl : MonoBehaviour
         }
         if (Input.GetKey("a"))
         {
-            rb.AddForce(0, 0, -20000 * Time.deltaTime);
+            rb.AddForce(0, 0, -30000 * Time.deltaTime);
             if (!isJumping)
             {
                 GetComponent<Animator>().Play("SonicRunning");
@@ -37,7 +41,7 @@ public class PlayerControl : MonoBehaviour
         }
         if (Input.GetKey("d"))
         {
-            rb.AddForce(0, 0, 20000 * Time.deltaTime);
+            rb.AddForce(0, 0, 30000 * Time.deltaTime);
             if (!isJumping)
             {
                 GetComponent<Animator>().Play("SonicRunning");
@@ -45,7 +49,7 @@ public class PlayerControl : MonoBehaviour
         }
         if (Input.GetKey("space") && !isJumping)
         {
-            rb.AddForce(0, 250000 * Time.deltaTime, 0);
+            rb.AddForce(0, 50000 * Time.deltaTime, 0);
             isJumping = true;
         }
 
